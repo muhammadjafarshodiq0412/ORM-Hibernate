@@ -9,6 +9,7 @@ import controllers.DepartmentController;
 import controllers.EmployeeController;
 import controllers.JobController;
 import controllers.RegionController;
+import controllers.UserAccountController;
 
 import daos.GeneralDao;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ import models.Employee;
 import models.Job;
 import models.Location;
 import models.Region;
+import models.UserAccount;
 import org.hibernate.Session;
 
 /**
@@ -131,22 +133,28 @@ public class ManualTest {
 //        for (Job job : jobs) {
 //            System.out.println(job.getJobId()+" "+job.getJobTitle());
 //        }
-        GeneralDao dao = new GeneralDao(HibernateUtil.getSessionFactory());
-     Region region= new Region();
-        region.setRegionId(9);
-        region.setRegionName("Pekanbaru");
-    //  System.out.println(dao.save(region));
-
-        Country country=new Country("ER", "BALIi", region);
-      //  System.out.println(dao.save(country));
-
-     Location location=new Location(BigDecimal.valueOf(21), "Tanjung Duren", "1C", "TIMUR", "JAKARTA", country);
+//        GeneralDao dao = new GeneralDao(HibernateUtil.getSessionFactory());
+//     Region region= new Region();
+//        region.setRegionId(9);
+//        region.setRegionName("Pekanbaru");
+//      System.out.println(dao.save(region));
+//
+//        Country country=new Country("ER", "BALIi", region);
+//        System.out.println(dao.save(country));
+//
+//     Location location=new Location(BigDecimal.valueOf(21), "Tanjung Duren", "1C", "TIMUR", "JAKARTA", country);
      //   System.out.println(dao.save(location));
     //    System.out.println(dao.delete(location));
 //        List<Location> l=dao.select("from Location");
 //        for (Location location1: l ) {
 //            System.out.println(location1.getCity());
 //        }
+
+     //
+      
+        RegionController uja= new RegionController();
+        //uja.regis("5", "tes", "tes");
+        System.out.println(uja.getAll());
 
     }
 }

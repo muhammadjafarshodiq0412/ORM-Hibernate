@@ -56,5 +56,6 @@ Contributor(s):
     <mapping class="models.Employee"/>
     <mapping class="models.Job"/>
     <mapping class="models.Location"/>
+    <mapping class="models.UserAccount"/>
   </session-factory>
 </hibernate-configuration>
