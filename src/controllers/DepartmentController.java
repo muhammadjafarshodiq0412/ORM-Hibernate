@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import daos.GeneralDao;
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,9 +17,9 @@ import tools.HibernateUtil;
  *
  * @author HP
  */
-public class DepartmentController <E> {
+public class DepartmentController<E> {
 
-  private GeneralDao dao;
+    private GeneralDao dao;
 
     public DepartmentController() {
 
@@ -28,14 +27,16 @@ public class DepartmentController <E> {
     }
 
     public String save(String id, String name, String manid, String locid) {
-        return this.dao.save(new Department(new Short(id), name, new Employee(new Integer(manid)), new Location(new BigDecimal(locid))))
-                ? "Success to Save Department" : "Failed to Save Department";
+        dao.save(new Department(new Short(id), name, new Employee(new Integer(manid)), new Location(new BigDecimal(locid))));
+        String a = "Sukses";
+        return a;
     }
 
 //
     public String delete(String id) {
-        return this.dao.delete(new Department(id))
-                ? "Success to Delete Department" : "Failed to Delete Department";
+        dao.delete(new Department(id));
+        String a = "Sukses";
+        return a;
     }
 
     public List<Department> getAll() {
@@ -45,8 +46,8 @@ public class DepartmentController <E> {
     public List<Department> search(String cmb, String txt) {
         return this.dao.search("Department", cmb, txt);
     }
-     public Department selectByName( String lname) {
+
+    public Department selectByName(String lname) {
         return (Department) this.dao.selectByField("Department", "departmentName", lname);
     }
 }
-   

@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import daos.GeneralDao;
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,14 +26,15 @@ public class JobController<E> {
     }
 
     public String save(String id, String name, Integer min, Integer max) {
-        return this.dao.save(new Job(id, name, min, max))
-                ? "Success to Save Job" : "Failed to Save Job";
-    }
+      dao.save(new Job(id, name, min, max));
+     String a="Sukses";
+        return  a;}
 
 //
-   public String delete(String id, String name, Integer min, Integer max) {
-        return this.dao.delete(new Job(id, name, min, max))
-                ? "Success to Delete Job" : "Failed to Delete Job";
+    public String delete(String id, String name, Integer min, Integer max) {
+        dao.delete(new Job(id, name, min, max));
+        String a = "Sukses";
+        return a;
     }
 
     public List<Job> getAll() {
@@ -44,11 +44,9 @@ public class JobController<E> {
     public List<Job> search(String cmb, String txt) {
         return this.dao.search("Job", cmb, txt);
     }
-     public Job selectByName( String lname) {
+
+    public Job selectByName(String lname) {
         return (Job) this.dao.selectByField("Job", "jobTitle", lname);
     }
-
- 
-    
 
 }

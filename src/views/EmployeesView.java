@@ -1,4 +1,3 @@
-
 package views;
 
 import controllers.DepartmentController;
@@ -420,28 +419,22 @@ public class EmployeesView extends javax.swing.JInternalFrame {
 ////         TODO add your handling code here:
         EmployeeController employeeController = new EmployeeController();
         String key = txtSearch.getText();
-         String field;
+        String field;
         if (cmbSearch.getSelectedItem().equals("ID")) {
-            
-            field="employeeId";
-        }
-        else if (cmbSearch.getSelectedItem().equals("First Name")) {
-             field="firstName";
-        }
-         else if (cmbSearch.getSelectedItem().equals("Last Name")) {
-            field="lastName";
-        }
-          else if (cmbSearch.getSelectedItem().equals("Job Name")) {
-            field="jobId";
-        }
-           else if (cmbSearch.getSelectedItem().equals("Salary")) {
-            field="salary";
-        }
-            else if (cmbSearch.getSelectedItem().equals("Manager")) {
-            field="managerId";
-        }
-        else{
-            field="departmentId";
+
+            field = "employeeId";
+        } else if (cmbSearch.getSelectedItem().equals("First Name")) {
+            field = "firstName";
+        } else if (cmbSearch.getSelectedItem().equals("Last Name")) {
+            field = "lastName";
+        } else if (cmbSearch.getSelectedItem().equals("Job Name")) {
+            field = "jobId";
+        } else if (cmbSearch.getSelectedItem().equals("Salary")) {
+            field = "salary";
+        } else if (cmbSearch.getSelectedItem().equals("Manager")) {
+            field = "managerId";
+        } else {
+            field = "departmentId";
         }
         List<Employee> empSearch = new ArrayList<>();
         empSearch = employeeController.search(field, key);
@@ -453,8 +446,8 @@ public class EmployeesView extends javax.swing.JInternalFrame {
                     "Manager Name", "Department Name"
                 }
         );
-        
-        for (Employee r :empSearch) {
+
+        for (Employee r : empSearch) {
             Object[] os = new Object[11];
             os[0] = r.getEmployeeId();
             os[1] = r.getFirstName();
@@ -505,7 +498,7 @@ public class EmployeesView extends javax.swing.JInternalFrame {
         txtPhone.setText((String) tblEmployee.getValueAt(row, 4));
         cmbJob.setSelectedItem((String) tblEmployee.getValueAt(row, 6).toString());
         txtSalary.setText((String) tblEmployee.getValueAt(row, 7).toString());
-        if (txtComm.getText()==null) {
+        if (txtComm.getText() == null) {
             txtComm.setText("0");
         }
         txtComm.setText((String) tblEmployee.getValueAt(row, 8).toString());
@@ -521,7 +514,7 @@ public class EmployeesView extends javax.swing.JInternalFrame {
 
     private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_txtSearchKeyTyped
     private void bindingTabel() {
         DefaultTableModel tableModel = new DefaultTableModel();
@@ -530,9 +523,9 @@ public class EmployeesView extends javax.swing.JInternalFrame {
                     "ID", "First Name", "Last Name", "Email", "Phone Number",
                     "Hire Date", "Job Name", "Salary", "Commission_pct",
                     "Manager Name", "Department Name"
-                } );
+                });
         for (Object r1 : employeeController.getAll()) {
-            Employee r=(Employee) r1;
+            Employee r = (Employee) r1;
             Object[] os = new Object[11];
             os[0] = r.getEmployeeId();
             os[1] = r.getFirstName();
@@ -542,17 +535,14 @@ public class EmployeesView extends javax.swing.JInternalFrame {
             os[5] = r.getHireDate();
             os[6] = r.getJobId().getJobTitle();
             os[7] = r.getSalary();
-            
-            if (r.getCommissionPct()==null) {
+
+            if (r.getCommissionPct() == null) {
                 os[8] = "-";
+            } else {
+                os[8] = r.getCommissionPct();
             }
-            else{
-                os[8]=r.getCommissionPct();
-            }          
-            os[9] = r.getManagerId().getFirstName()+" "+r.getManagerId().getLastName();
+            os[9] = r.getManagerId().getFirstName() + " " + r.getManagerId().getLastName();
             os[10] = r.getDepartmentId().getDepartmentName();
-            
-            
 
             tableModel.addRow(os);
 
@@ -597,7 +587,7 @@ public class EmployeesView extends javax.swing.JInternalFrame {
 
     private void txtLNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLNameKeyTyped
 
-      
+
     }//GEN-LAST:event_txtLNameKeyTyped
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -612,31 +602,32 @@ public class EmployeesView extends javax.swing.JInternalFrame {
         SimpleDateFormat dm = new SimpleDateFormat(jenis);
         String tgl = String.valueOf(dm.format(txtHire.getDate()));
         String jobId = jobController.selectByName(cmbJob.getSelectedItem().toString()).getJobId();
-      //  JOptionPane.showMessageDialog(this, jobId);
+        //     JOptionPane.showMessageDialog(this, jobId);
         String salary = txtSalary.getText();
         String commision = txtComm.getText();
-        
-        String man_name = cmbManager.getSelectedItem().toString();  
-        String[] nm=man_name.split(" ");
-        String fname=nm[0];
-        String lname=nm[1];
-        int manId = employeeController.selectByName(fname,lname).getEmployeeId();
-        String managerID=Integer.toString(manId);
- //JOptionPane.showMessageDialog(this, managerID);
+
+        String man_name = cmbManager.getSelectedItem().toString();
+        String[] nm = man_name.split(" ");
+        String fname = nm[0];
+
+        String lname = nm[1];
+        int manId = employeeController.selectByName(fname, lname).getEmployeeId();
+        String managerID = Integer.toString(manId);
+        // JOptionPane.showMessageDialog(this, managerID);
         String dep_name = cmbDepartmen.getSelectedItem().toString();
         int manDep = departmentController.selectByName(dep_name).getDepartmentId();
-        String depID=Integer.toString(manDep);
-    //     JOptionPane.showMessageDialog(this, depID);
-                
+        String depID = Integer.toString(manDep);
+        // JOptionPane.showMessageDialog(this, depID);
+
         try {
             //
             JOptionPane.showMessageDialog(this, employeeController.save(id, firstName, lastName, email, phone, tgl, salary, commision, managerID, jobId, depID));
         } catch (ParseException ex) {
             Logger.getLogger(EmployeesView.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-                reset();
-           
+
+        reset();
+
         bindingTabel();
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -678,18 +669,15 @@ public class EmployeesView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIdActionPerformed
     void cmbManager() {
         for (Object o : employeeController.getAll()) {
-            Employee e=(Employee) o;
-            cmbManager.addItem(e.getFirstName()+" "+e.getLastName());
+            Employee e = (Employee) o;
+            cmbManager.addItem(e.getFirstName() + " " + e.getLastName());
         }
-            
-
-        
 
     }
 
     void cmbDepartment() {
         for (Object o : departmentController.getAll()) {
-            Department d=(Department) o; 
+            Department d = (Department) o;
             cmbDepartmen.addItem(d.getDepartmentName());
 
         }
@@ -697,7 +685,7 @@ public class EmployeesView extends javax.swing.JInternalFrame {
 
     void cmbJob() {
         for (Object o : jobController.getAll()) {
-            Job j=(Job) o;
+            Job j = (Job) o;
             cmbJob.addItem(j.getJobTitle());
 
         }

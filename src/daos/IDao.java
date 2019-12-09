@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface IDao<E> {
 
-    public boolean save(E entity);
+    public E save(E entity);
 
-    public boolean delete(E entity);
+    public E delete(E entity);
 
     public List<E> select(String key);
 

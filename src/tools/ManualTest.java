@@ -133,7 +133,7 @@ public class ManualTest {
 //        }
         GeneralDao dao = new GeneralDao(HibernateUtil.getSessionFactory());
      Region region= new Region();
-        region.setRegionId(BigDecimal.valueOf(9));
+        region.setRegionId(9);
         region.setRegionName("Pekanbaru");
     //  System.out.println(dao.save(region));
 

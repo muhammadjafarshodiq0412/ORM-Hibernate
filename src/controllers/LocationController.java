@@ -17,23 +17,26 @@ import tools.HibernateUtil;
  * @author Rizky
  */
 public class LocationController<E> {
+
     private GeneralDao dao;
 
     public LocationController() {
-        this.dao = new GeneralDao(HibernateUtil.getSessionFactory());    
+        this.dao = new GeneralDao(HibernateUtil.getSessionFactory());
     }
 
-    public String save(String id, String address, String postal, String city, String province, String country){
-        return this.dao.save(new Location(new BigDecimal(id), 
-                address, postal, city, province, new Country(country))) ?
-                "Success to Save Location" : "Failed to Save Location";
+    public String save(String id, String address, String postal, String city, String province, String country) {
+        dao.save(new Location(new BigDecimal(id),
+                address, postal, city, province, new Country(country)));
+        String a = "Sukses";
+        return a;
     }
-    
+
     public String delete(String id) {
-        return this.dao.delete(new Location(new BigDecimal(id)))
-                ? "Success to Delete Location" : "Failed to Delete Location";
+        dao.delete(new Location(new BigDecimal(id)));
+        String a = "Sukses";
+        return a;
     }
-    
+
     public List<Location> getAll() {
         return this.dao.select("Location");
     }
@@ -41,13 +44,13 @@ public class LocationController<E> {
     public List<Location> search(String cmb, String txt) {
         return this.dao.search("Location", cmb, txt);
     }
-    
-    public Location selectByName(String txt){
+
+    public Location selectByName(String txt) {
         return (Location) this.dao.selectByField("Location", "city", txt);
     }
-    
-    public Location selectById(String txt){
+
+    public Location selectById(String txt) {
         return (Location) this.dao.selectByField("Location", "locationId", txt);
     }
-    
+
 }

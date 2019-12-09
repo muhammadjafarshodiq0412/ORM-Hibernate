@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import daos.GeneralDao;
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,27 +29,30 @@ public class CountryController<E> {
     }
 
     public String save(String id, String name, String regionId) {
-        return this.dao.save(new Country(id, name, new Region(new BigDecimal(regionId)))) ? 
-                "Success to Save Country" : "Failed to Save Country";
+        dao.save(new Country(id, name, new Region(Integer.parseInt(regionId))));
+        String a = "Sukses";
+        return a;
     }
-    
-    public String delete(String id){
-        return this.dao.delete(new Country(id)) ?
-                "Success to Delete Country" : "Failed to Delete Country";
+
+    public String delete(String id) {
+        dao.delete(new Country(id));
+        String a = "Sukses";
+        return a;
     }
-    
-    public List<Country> getAll(){
-     return this.dao.select("Country");
+
+    public List<Country> getAll() {
+        return this.dao.select("Country");
     }
-    public List<Country> search(String tabel, String field, String key){
-     return this.dao.search(tabel, field, key);
+
+    public List<Country> search(String tabel, String field, String key) {
+        return this.dao.search(tabel, field, key);
     }
-    
-      public Country selectById(String id){
-        return (Country) this.dao.selectByField(" Country "," countryId ", id);
+
+    public Country selectById(String id) {
+        return (Country) this.dao.selectByField(" Country ", " countryId ", id);
     }
-  
-      public Country selectByName(String txt){
+
+    public Country selectByName(String txt) {
         return (Country) this.dao.selectByField("Country", "countryName", txt);
     }
 
@@ -60,7 +62,6 @@ public class CountryController<E> {
 //    public Country selectByName(String name) {
 //        return this.dao.selectByName(name);
 //    }
-    
 //    public List<Country> search(String key) {
 //        return this.dao.searchRegions(key);
 //    }

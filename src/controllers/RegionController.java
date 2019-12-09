@@ -31,7 +31,7 @@ public class RegionController<E> {
 
     public String save(String id, String name) {
       
-        dao.save1(new Region(new BigDecimal(id), name));
+        dao.save(new Region(Integer.parseInt(id), name));
         String a="Sukses";
         return  a;
        // return this.dao.save1(new Region(new BigDecimal(id), name)) ? 
@@ -41,7 +41,7 @@ public class RegionController<E> {
     
 
     public String delete(String id){
-         dao.delete1(new Region(new BigDecimal(id)));
+         dao.delete(new Region(Integer.parseInt(id)));
         String a="Sukses";
         return  a;
 //        return this.dao.delete(new Region(new BigDecimal(id))) ?
@@ -49,7 +49,7 @@ public class RegionController<E> {
     }
     
     public List<Region> getAll(){
-     return this.dao.select1("Region ");
+     return this.dao.select("Region");
     }
     public List<Region> search(String field, String key){
      return this.dao.search("Region", field, key);

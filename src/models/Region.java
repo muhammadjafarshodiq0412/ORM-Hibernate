@@ -38,7 +38,7 @@ public class Region implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "REGION_ID")
-    private BigDecimal regionId;
+    private Integer regionId;
     @Column(name = "REGION_NAME")
     private String regionName;
     @OneToMany(mappedBy = "regionId", fetch = FetchType.LAZY)
@@ -47,11 +47,11 @@ public class Region implements Serializable {
     public Region() {
     }
 
-    public Region(BigDecimal regionId) {
+    public Region(Integer regionId) {
         this.regionId = regionId;
     }
 
-    public Region(BigDecimal id, String name) {
+    public Region(Integer id, String name) {
         this.regionId=id;
         this.regionName=name;
     }
@@ -60,11 +60,11 @@ public class Region implements Serializable {
         this.regionName = regionName;
     }
 
-    public BigDecimal getRegionId() {
+    public Integer getRegionId() {
         return regionId;
     }
 
-    public void setRegionId(BigDecimal regionId) {
+    public void setRegionId(Integer regionId) {
         this.regionId = regionId;
     }
 
